@@ -20,13 +20,11 @@ app.get('/profile-picture', function (req, res) {
   res.end(img, 'binary');
 });
 
-// Use MongoDB URL based on environment
 let mongoUrl = process.env.MONGO_URL || "mongodb://admin:admin@localhost:27017";
 
-// Mongo Client Options
+
 let mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
-// Database Name
 let databaseName = "my-db";
 
 app.post('/update-profile', function (req, res) {
@@ -47,13 +45,13 @@ app.post('/update-profile', function (req, res) {
     });
 
   });
-  // Send response
+  
   res.send(userObj);
 });
 
 app.get('/get-profile', function (req, res) {
   let response = {};
-  // Connect to the db
+  
   MongoClient.connect(mongoUrl, mongoClientOptions, function (err, client) {
     if (err) throw err;
 
@@ -66,7 +64,7 @@ app.get('/get-profile', function (req, res) {
       response = result;
       client.close();
 
-      // Send response
+      
       res.send(response ? response : {});
     });
   });
