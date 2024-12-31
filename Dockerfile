@@ -3,13 +3,13 @@ FROM node:16-alpine
 ENV MONGO_DB_USERNAME=admin \
     MONGO_DB_PWD=admin
 
-WORKDIR /home/app
+WORKDIR /app
 
 COPY ./app/package*.json ./
 
 RUN npm install --production
 
-COPY ./app /home/app
+COPY ./app .
 
 EXPOSE 3000
 
